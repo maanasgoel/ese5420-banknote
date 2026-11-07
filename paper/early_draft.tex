@@ -2,6 +2,7 @@
 
 % Official NeurIPS 2025 style (the latest released). [preprint] shows author names;
 % the footer is replaced below so the PDF does not claim to be a NeurIPS submission.
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
 \usepackage[preprint]{neurips_2025}
 \makeatletter
 \renewcommand{\@noticestring}{ESE 5420 course project (University of Pennsylvania, Fall 2026), written in the format of a machine learning paper. Not peer reviewed. Early draft, 16 November 2026.}
@@ -16,12 +17,13 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=blue!50!black, urlcolor=blue!50!black}
 
 \newcommand{\todo}[1]{\textcolor{gray}{\textit{[#1]}}}
 
-\title{How Many Training Notes? Sample Efficiency of Logistic Regression,\\ $k$-Nearest Neighbours and Random Forests for Forged-Banknote Detection}
+\title{How Many Training Notes? Sample Efficiency of Logistic Regression, $k$-Nearest Neighbours and Random Forests for Forged-Banknote Detection}
 
-\author{Maanas \And Advit \\ University of Pennsylvania}
+\author{Maanas \qquad Advit \\ University of Pennsylvania}
 
 \begin{document}
 \maketitle
@@ -121,7 +123,6 @@ UCI Banknote Authentication \cite{lohweg2012uci} (CC BY 4.0) contains four featu
 \section*{Contributions and AI use \todo{draft}}
 Maanas built the data pipeline, the baseline and the learning-curve experiments. Advit will lead the random-forest extension and the evaluation plots. Both write the paper. We used an LLM assistant (Claude) for code generation, debugging and copy-editing. All experimental results were produced and checked by the authors. Code: \url{https://github.com/maanasgoel/ese5420-banknote}.
 
-\bibliographystyle{plain}
 \begin{thebibliography}{10}
 \bibitem{lohweg2012uci} V.~Lohweg. Banknote Authentication. UCI Machine Learning Repository, 2012. \url{https://archive.ics.uci.edu/dataset/267/banknote+authentication}. CC BY 4.0.
 \bibitem{gillich2010banknote} E.~Gillich and V.~Lohweg. Banknotenauthentifizierung. In \emph{1. Jahreskolloquium ``Bildverarbeitung in der Automation''}, Lemgo, Germany, 2010.

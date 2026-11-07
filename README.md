@@ -15,7 +15,9 @@ method needs to reach a given error rate**.
 | `src/baseline.py` | Baseline checkpoint numbers -> `results/baseline.json` |
 | `src/learning_curves.py` | 50 draws x training sizes x 3 methods -> `results/learning_curves_*.csv` |
 | `src/make_figure.py` | `figures/baseline.png` |
-| `submissions/` | Canvas uploads (`proposal.txt`, `baseline.txt`, ...) |
+| `src/make_tables.py` | LaTeX tables for the paper -> `paper/tables/` |
+| `paper/` | NeurIPS-style LaTeX (`early_draft.tex`); build with `tectonic -X compile early_draft.tex` |
+| `submissions/` | Canvas uploads (`baseline.txt`, `baseline.png`, `early_draft.pdf`) |
 
 ## Reproduce
 
