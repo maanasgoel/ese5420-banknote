@@ -35,4 +35,4 @@ Logistic regression leads at 50 notes or fewer. kNN (k = 1) overtakes it from ab
 Before 16 November, Maanas will add more training sizes, plot paired error differences between methods with error bars, and write the paper outline. Advit will tune the forest further and add confusion matrices and ROC curves.
 
 ## Code
-[REPOSITORY LINK]
+https://github.com/maanasgoel/ese5420-banknote (src/baseline.py and src/learning_curves.py produce every number; see README.md)
