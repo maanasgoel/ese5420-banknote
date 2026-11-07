@@ -1,0 +1,136 @@
+{
+  "run_at_utc": "2026-11-07T15:23:49+00:00",
+  "n_dev": 1078,
+  "n_test": 270,
+  "forged_test": 122,
+  "methods": {
+    "Logistic regression": {
+      "params": {
+        "clf__C": 100.0
+      },
+      "dev_cv_error": 0.005564168819982784,
+      "test_errors": 1,
+      "test_error": 0.003703703703703704,
+      "wilson95": [
+        0.0006540772764983358,
+        0.020677962851809416
+      ],
+      "confusion": {
+        "tn": 147,
+        "fp": 1,
+        "fn": 0,
+        "tp": 122
+      },
+      "missed_forgeries": 0,
+      "false_alarms": 1,
+      "auc": 0.9998892334957908
+    },
+    "kNN": {
+      "params": {
+        "clf__n_neighbors": 1.0
+      },
+      "dev_cv_error": 0.0009259259259259967,
+      "test_errors": 1,
+      "test_error": 0.003703703703703704,
+      "wilson95": [
+        0.0006540772764983358,
+        0.020677962851809416
+      ],
+      "confusion": {
+        "tn": 147,
+        "fp": 1,
+        "fn": 0,
+        "tp": 122
+      },
+      "missed_forgeries": 0,
+      "false_alarms": 1,
+      "auc": 0.9966216216216216,
+      "mcnemar_vs_lr": {
+        "lr_right_other_wrong": 1,
+        "lr_wrong_other_right": 1,
+        "p_exact": 1.0
+      }
+    },
+    "Random forest": {
+      "params": {
+        "max_features": 2.0,
+        "min_samples_leaf": 1.0
+      },
+      "dev_cv_error": 0.005555555555555536,
+      "test_errors": 3,
+      "test_error": 0.011111111111111112,
+      "wilson95": [
+        0.003785771549259931,
+        0.03215325305474472
+      ],
+      "confusion": {
+        "tn": 145,
+        "fp": 3,
+        "fn": 0,
+        "tp": 122
+      },
+      "missed_forgeries": 0,
+      "false_alarms": 3,
+      "auc": 0.9997784669915818,
+      "mcnemar_vs_lr": {
+        "lr_right_other_wrong": 3,
+        "lr_wrong_other_right": 1,
+        "p_exact": 0.625
+      }
+    },
+    "Gradient boosting": {
+      "params": {
+        "learning_rate": 0.2,
+        "max_depth": 3.0
+      },
+      "dev_cv_error": 0.0027863910422050164,
+      "test_errors": 1,
+      "test_error": 0.003703703703703704,
+      "wilson95": [
+        0.0006540772764983358,
+        0.020677962851809416
+      ],
+      "confusion": {
+        "tn": 147,
+        "fp": 1,
+        "fn": 0,
+        "tp": 122
+      },
+      "missed_forgeries": 0,
+      "false_alarms": 1,
+      "auc": 0.9999446167478954,
+      "mcnemar_vs_lr": {
+        "lr_right_other_wrong": 1,
+        "lr_wrong_other_right": 1,
+        "p_exact": 1.0
+      }
+    },
+    "Neural network": {
+      "params": {
+        "clf__alpha": 0.0001,
+        "clf__hidden_layer_sizes": "(8,)"
+      },
+      "dev_cv_error": 0.0,
+      "test_errors": 0,
+      "test_error": 0.0,
+      "wilson95": [
+        8.673617379884035e-19,
+        0.014028547890459302
+      ],
+      "confusion": {
+        "tn": 148,
+        "fp": 0,
+        "fn": 0,
+        "tp": 122
+      },
+      "missed_forgeries": 0,
+      "false_alarms": 0,
+      "auc": 1.0,
+      "mcnemar_vs_lr": {
+        "lr_right_other_wrong": 0,
+        "lr_wrong_other_right": 1,
+        "p_exact": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+\section{Discussion}
+\label{sec:discussion}
+\paragraph{Why the curves look the way they do.} We think the ranking follows the shape of decision boundary each method can represent. The evidence points to a smooth, curved boundary: no plane separates the development notes, but the 8-unit network separates all of them (0.00\% CV error on the full development set, Table~\ref{tab:test}). Logistic regression fits a plane with five parameters, so it is reliable from few notes but cannot get below its bias floor of about 0.6\%. $k$NN with $k=1$ can follow any boundary, but it needs enough notes to fill the space near it, so it starts badly and improves steadily. Trees split on one feature at a time, so they approximate a smooth oblique boundary with many small steps, and that needs many notes. The small neural network sits in between: with 8 hidden units (49 weights) it can represent a smooth curved boundary, yet it has far fewer degrees of freedom than $k$NN or a forest. On this dataset that appears to be the right inductive bias at every sample size we tried, although we did not test this explanation directly.
+
+\paragraph{What a practitioner should take away.} If only a few dozen labelled notes are available, logistic regression or a small neural network is the safe choice; $k$NN and tree ensembles should not be used below about 100 notes. With a few hundred notes, the gap between the methods is a fraction of a percentage point, and the choice can be made on other grounds, such as interpretability (logistic regression) or simplicity ($k$NN). The answer to ``which method is best?'' depends on $n$, which a single accuracy number hides.
+
+\paragraph{Limitations.}
+\begin{itemize}
+  \item \textbf{One dataset, four features.} The conclusions are about this benchmark. They are not a claim about real currency authentication, where the notes, scanners and forgery methods vary far more.
+  \item \textbf{Specimen identity is unknown.} Our 8-row blocks are a heuristic inferred from file order. They may cut real specimens in two or join different ones, so the grouped check reduces the risk of leakage but cannot rule it out. The dev/test split itself was random, so test notes may share specimens with development notes.
+  \item \textbf{The SEs understate uncertainty.} All draws come from the same 1,078 notes, and at large $n$ they share most of their training and evaluation notes. The SEs measure variation across subsamples of this dataset, not across new datasets, and the bootstrap intervals in Table~\ref{tab:reach} inherit this.
+  \item \textbf{Small grids and one initialisation.} Each method was tuned on a small grid fixed before the experiments, and each network was trained from one random initialisation. A wider search could move individual curves, though the larger forest grid did not.
+  \item \textbf{A small test set.} With 270 notes, one error is 0.37 percentage points. The test set confirms that no method collapses on new data, but it cannot rank them.
+  \item \textbf{Label coding.} We assume class 1 is forged. If it is the other way round, ``missed forgeries'' and ``false alarms'' swap; errors and AUC do not change.
+\end{itemize}
+
+\section{Conclusion}
+\label{sec:conclusion}
+On the UCI banknote data, the question ``which classifier is most accurate?'' has no useful answer: every method we tried makes at most 3 errors on 270 test notes. The question ``how many labelled notes does each method need?'' does. Logistic regression reaches 2\% error fastest of the two core methods but levels off near 0.6\%. $k$NN overtakes it at about 100 notes and needs less than half as many notes to reach 1\%. Of the later-course methods, tree ensembles are the slowest learners, while a small neural network is the most sample-efficient method at every size. These conclusions survive a check for several images of the same specimen. More generally, when a benchmark is saturated, learning curves with paired comparisons are a cheap and honest way to still compare methods.
+
+\begin{ack}
+\textbf{Contributions.} The work was split evenly. Maanas built the data pipeline (loading, de-duplication and the fixed split), the logistic-regression baseline, $k$NN, the learning-curve framework and the specimen-leakage check, and drafted the Data, Method and Results sections. Advit built the random-forest, gradient-boosting and neural-network extensions, the bootstrap analysis of notes needed, the test-set evaluation and the figures, and drafted the Introduction, Related work and Discussion. Both checked all code and numbers and edited the whole paper.
+
+\textbf{AI use.} We used an LLM assistant (Claude, Anthropic) for code generation, debugging, literature search and drafting and copy-editing of the manuscript. All experimental results were produced and verified by the authors, and every reference was checked against its source.
+
+\textbf{Data and code.} UCI Banknote Authentication, V.~Lohweg, CC BY 4.0. Code, split and results: \url{https://github.com/maanasgoel/ese5420-banknote}.
+\end{ack}

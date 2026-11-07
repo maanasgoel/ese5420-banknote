@@ -1,0 +1,61 @@
+\documentclass{article}
+
+% Official NeurIPS 2025 style (the latest released). [preprint] shows author names;
+% the footer is replaced so the PDF does not claim to be a NeurIPS submission.
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\usepackage[preprint]{neurips_2025}
+\makeatletter
+\renewcommand{\@noticestring}{ESE 5420 course project (University of Pennsylvania, Fall 2026), written in the format of a machine learning paper. Not peer reviewed.}
+\makeatother
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath,amsfonts}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{float}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=blue!50!black, urlcolor=blue!50!black}
+
+\input{tables/numbers.tex}
+
+\title{How Many Training Notes? Sample Efficiency of Linear, Nearest-Neighbour, Tree and Neural Classifiers for Forged-Banknote Detection}
+
+\author{Maanas \qquad Advit \\ University of Pennsylvania}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+On the UCI Banknote Authentication benchmark, a tuned logistic regression already misclassifies only \LRcv{} of notes in cross-validation, so ranking methods by final accuracy compares noise. We instead ask how many labelled training notes each method needs. We compare logistic regression (the baseline) and $k$-nearest neighbours, with random forests, gradient boosting and a small neural network as extensions, along learning curves from 10 to 800 training notes. Each size has 50 paired draws, and every method is tuned by cross-validation inside each draw. Logistic regression learns fastest of the core methods at first (2\% error from about \reachLRTwo{} notes) but levels off near 0.6\%. $k$NN overtakes it at about 100 notes and reaches 1\% error from about \reachKNNOne{} notes, against \reachLROne{}. Tree ensembles are the slowest learners, while an 8-unit neural network has the lowest error at every size and reaches 1\% from about \reachNNOne{} notes. A check for several images of the same physical specimen leaves these results unchanged. On the 270-note test set, all methods make 0--3 errors and are statistically tied, which is why the learning curves, not the test set, carry the comparison.
+\end{abstract}
+
+\input{sections/intro.tex}
+\input{sections/method.tex}
+\input{sections/results.tex}
+\input{sections/discussion.tex}
+
+\begin{thebibliography}{99}
+\bibitem{lohweg2012uci} V.~Lohweg. Banknote Authentication. UCI Machine Learning Repository, 2012. \url{https://archive.ics.uci.edu/dataset/267/banknote+authentication}. CC BY 4.0.
+\bibitem{gillich2010banknote} E.~Gillich and V.~Lohweg. Banknotenauthentifizierung. In \emph{1. Jahreskolloquium ``Bildverarbeitung in der Automation''}, Lemgo, Germany, 2010.
+\bibitem{perlich2003tree} C.~Perlich, F.~Provost, and J.~S. Simonoff. Tree induction vs.\ logistic regression: A learning-curve analysis. \emph{Journal of Machine Learning Research}, 4:211--255, 2003.
+\bibitem{ng2002discriminative} A.~Y. Ng and M.~I. Jordan. On discriminative vs.\ generative classifiers: A comparison of logistic regression and naive Bayes. In \emph{Advances in Neural Information Processing Systems 14}, 2002.
+\bibitem{viering2023shape} T.~Viering and M.~Loog. The shape of learning curves: A review. \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 45(6):7799--7819, 2023.
+\bibitem{varma2006bias} S.~Varma and R.~Simon. Bias in error estimation when using cross-validation for model selection. \emph{BMC Bioinformatics}, 7:91, 2006.
+\bibitem{cawley2010overfitting} G.~C. Cawley and N.~L.~C. Talbot. On over-fitting in model selection and subsequent selection bias in performance evaluation. \emph{Journal of Machine Learning Research}, 11:2079--2107, 2010.
+\bibitem{kaufman2012leakage} S.~Kaufman, S.~Rosset, C.~Perlich, and O.~Stitelman. Leakage in data mining: Formulation, detection, and avoidance. \emph{ACM Transactions on Knowledge Discovery from Data}, 6(4):15, 2012.
+\bibitem{dietterich1998approximate} T.~G. Dietterich. Approximate statistical tests for comparing supervised classification learning algorithms. \emph{Neural Computation}, 10(7):1895--1923, 1998.
+\bibitem{james2021isl} G.~James, D.~Witten, T.~Hastie, and R.~Tibshirani. \emph{An Introduction to Statistical Learning}. Springer, 2nd edition, 2021.
+\bibitem{cover1967nearest} T.~Cover and P.~Hart. Nearest neighbor pattern classification. \emph{IEEE Transactions on Information Theory}, 13(1):21--27, 1967.
+\bibitem{breiman2001random} L.~Breiman. Random forests. \emph{Machine Learning}, 45(1):5--32, 2001.
+\bibitem{friedman2001greedy} J.~H. Friedman. Greedy function approximation: A gradient boosting machine. \emph{Annals of Statistics}, 29(5):1189--1232, 2001.
+\bibitem{pedregosa2011scikit} F.~Pedregosa et al. Scikit-learn: Machine learning in Python. \emph{Journal of Machine Learning Research}, 12:2825--2830, 2011.
+\end{thebibliography}
+
+\input{sections/appendix.tex}
+
+\end{document}

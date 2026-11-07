@@ -1,0 +1,89 @@
+\appendix
+\section{Additional results}
+\label{app:extra}
+
+\subsection{Baseline details}
+\label{app:baseline}
+Table~\ref{tab:baseline} gives the baseline estimates on the development notes and Figure~\ref{fig:cgrid} the CV error across the $C$ grid. Errors are flat from $C=100$ to $C=1000$, so the baseline is effectively unregularised. The first rows of the cleaned data are in Table~\ref{tab:head}.
+
+\begin{table}[H]
+  \centering
+  \caption{Logistic-regression baseline on the 1,078 development notes. SE is the standard error of the five fold errors. The 95\% interval is a Wilson interval on the pooled out-of-fold errors.}
+  \label{tab:baseline}
+  \small
+  \input{tables/baseline.tex}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{First rows of the cleaned data, two per class.}
+  \label{tab:head}
+  \small
+  \input{tables/head.tex}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../figures/baseline.png}
+  \caption{Baseline-checkpoint figure. (a) Logistic-regression CV error across the $C$ grid, $\pm$1 SE. (b) The first learning curves (three methods, six sizes); the main text extends these.}
+  \label{fig:cgrid}
+\end{figure}
+
+\subsection{Full learning curves}
+\label{app:full}
+\begin{table}[H]
+  \centering
+  \caption{Mean error (\%) $\pm$ SE over 50 draws, scored on the development notes not used for training. Bold marks the lowest mean at each size. $^\dagger$Extension.}
+  \label{tab:full}
+  \small
+  \input{tables/learning_full.tex}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Paired difference from logistic regression, in percentage points (negative is better than the baseline), with the number of draws (out of 50) in which the method beat / lost to the baseline; the rest are ties. Bold: $|\Delta|>2$ SE.}
+  \label{tab:paired}
+  \small
+  \resizebox{\linewidth}{!}{\input{tables/paired.tex}}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Most common hyperparameters chosen by inner CV, with the share of the 50 draws that chose them. For the forest, $m$ is the number of features tried per split.}
+  \label{tab:params}
+  \small
+  \resizebox{\linewidth}{!}{\input{tables/params.tex}}
+\end{table}
+
+\subsection{Grouped draws}
+\label{app:grouped}
+\begin{table}[H]
+  \centering
+  \caption{Mean error (\%) $\pm$ SE for random draws and for draws that keep each 8-row pseudo-specimen on one side of the split (training, inner CV folds and evaluation).}
+  \label{tab:grouped}
+  \small
+  \input{tables/grouped.tex}
+\end{table}
+
+\subsection{Random-forest tuning}
+\label{app:forest}
+\begin{table}[H]
+  \centering
+  \caption{Random forest on all development notes. Top: 5-fold CV error of the small grid used inside every draw against a 64-setting grid. Bottom: out-of-bag error against the number of trees ($m=2$).}
+  \label{tab:forest}
+  \small
+  \input{tables/forest.tex}
+\end{table}
+
+\subsection{Test-set ROC curves}
+\label{app:roc}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\linewidth]{../figures/test_roc.pdf}
+  \caption{ROC curves on the 270 test notes, zoomed to the top-left corner.}
+  \label{fig:roc}
+\end{figure}
+
+\section{Reproducibility}
+\label{app:repro}
+All code, the fixed split and the result files are at \url{https://github.com/maanasgoel/ese5420-banknote}. \texttt{src/baseline.py}, \texttt{src/learning\_curves.py}, \texttt{src/analyse.py} and \texttt{src/test\_eval.py} produce every number, and \texttt{src/make\_tables.py} writes every table and every number quoted in the text, so the paper cannot drift from the results. The full run takes about 20 minutes on an 8-core laptop (Python 3.10, scikit-learn 1.7.2).

@@ -1,0 +1,49 @@
+{
+  "small (used in curves)": {
+    "best": {
+      "max_features": "2",
+      "min_samples_leaf": "1",
+      "n_estimators": "200"
+    },
+    "cv_error": 0.005555555555555558,
+    "se": 0.0026995147661320784,
+    "n_configs": 6
+  },
+  "large": {
+    "best": {
+      "criterion": "gini",
+      "max_features": "3",
+      "min_samples_leaf": "1",
+      "n_estimators": "500"
+    },
+    "cv_error": 0.00462962962962965,
+    "se": 0.002070433312499814,
+    "n_configs": 64
+  },
+  "oob_vs_trees": [
+    {
+      "trees": 25,
+      "oob_error": 0.007421150278293154
+    },
+    {
+      "trees": 50,
+      "oob_error": 0.005565862708719838
+    },
+    {
+      "trees": 100,
+      "oob_error": 0.004638218923933235
+    },
+    {
+      "trees": 200,
+      "oob_error": 0.005565862708719838
+    },
+    {
+      "trees": 500,
+      "oob_error": 0.00649350649350644
+    },
+    {
+      "trees": 1000,
+      "oob_error": 0.007421150278293154
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+method,n_train,most_common,share
+Gradient boosting,10,"{'learning_rate': 0.05, 'max_depth': 1}",0.84
+Gradient boosting,20,"{'learning_rate': 0.05, 'max_depth': 1}",0.62
+Gradient boosting,30,"{'learning_rate': 0.05, 'max_depth': 1}",0.66
+Gradient boosting,50,"{'learning_rate': 0.05, 'max_depth': 1}",0.52
+Gradient boosting,100,"{'learning_rate': 0.2, 'max_depth': 1}",0.5
+Gradient boosting,150,"{'learning_rate': 0.2, 'max_depth': 1}",0.5
+Gradient boosting,200,"{'learning_rate': 0.2, 'max_depth': 1}",0.5
+Gradient boosting,300,"{'learning_rate': 0.2, 'max_depth': 1}",0.54
+Gradient boosting,400,"{'learning_rate': 0.2, 'max_depth': 3}",0.6
+Gradient boosting,600,"{'learning_rate': 0.2, 'max_depth': 3}",0.68
+Gradient boosting,800,"{'learning_rate': 0.2, 'max_depth': 3}",0.86
+Logistic regression,10,{'clf__C': np.float64(0.001)},0.38
+Logistic regression,20,{'clf__C': np.float64(1.0)},0.26
+Logistic regression,30,{'clf__C': np.float64(1.0)},0.42
+Logistic regression,50,{'clf__C': np.float64(3.1622776601683795)},0.3
+Logistic regression,100,{'clf__C': np.float64(1.0)},0.36
+Logistic regression,150,{'clf__C': np.float64(3.1622776601683795)},0.3
+Logistic regression,200,{'clf__C': np.float64(1.0)},0.26
+Logistic regression,300,{'clf__C': np.float64(100.0)},0.22
+Logistic regression,400,{'clf__C': np.float64(100.0)},0.28
+Logistic regression,600,{'clf__C': np.float64(100.0)},0.28
+Logistic regression,800,{'clf__C': np.float64(100.0)},0.42
+Neural network,10,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.54
+Neural network,20,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.48
+Neural network,30,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.36
+Neural network,50,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.5
+Neural network,100,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.72
+Neural network,150,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.58
+Neural network,200,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.44
+Neural network,300,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.56
+Neural network,400,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.68
+Neural network,600,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.7
+Neural network,800,"{'clf__alpha': 0.0001, 'clf__hidden_layer_sizes': (8,)}",0.72
+Random forest,10,"{'max_features': 1, 'min_samples_leaf': 1}",0.6
+Random forest,20,"{'max_features': 1, 'min_samples_leaf': 1}",0.36
+Random forest,30,"{'max_features': 1, 'min_samples_leaf': 1}",0.48
+Random forest,50,"{'max_features': 1, 'min_samples_leaf': 1}",0.56
+Random forest,100,"{'max_features': 1, 'min_samples_leaf': 1}",0.7
+Random forest,150,"{'max_features': 1, 'min_samples_leaf': 1}",0.64
+Random forest,200,"{'max_features': 1, 'min_samples_leaf': 1}",0.66
+Random forest,300,"{'max_features': 1, 'min_samples_leaf': 1}",0.76
+Random forest,400,"{'max_features': 1, 'min_samples_leaf': 1}",0.52
+Random forest,600,"{'max_features': 1, 'min_samples_leaf': 1}",0.62
+Random forest,800,"{'max_features': 1, 'min_samples_leaf': 1}",0.52
+kNN,10,{'clf__n_neighbors': 1},0.8
+kNN,20,{'clf__n_neighbors': 1},0.74
+kNN,30,{'clf__n_neighbors': 1},0.74
+kNN,50,{'clf__n_neighbors': 1},0.68
+kNN,100,{'clf__n_neighbors': 1},0.82
+kNN,150,{'clf__n_neighbors': 1},0.7
+kNN,200,{'clf__n_neighbors': 1},0.8
+kNN,300,{'clf__n_neighbors': 1},0.82
+kNN,400,{'clf__n_neighbors': 1},0.9
+kNN,600,{'clf__n_neighbors': 1},0.96
+kNN,800,{'clf__n_neighbors': 1},0.98
