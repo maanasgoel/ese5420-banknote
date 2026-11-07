@@ -1,0 +1,38 @@
+# How Many Training Notes? Logistic Regression, kNN and Random Forests for Forged-Banknote Detection
+
+## Group
+Final Project Groups, Group [NUMBER]: Maanas, Advit
+
+## Changes since the proposal
+Logistic regression is already below 1% error, so, as the feedback suggested, our main question is now: how many training notes does each method need to reach a given error rate? Test accuracy becomes secondary. We also check for several images of one specimen (see Issues).
+
+## Data
+UCI Banknote Authentication (Lohweg 2012, CC BY 4.0): 1,372 rows, 4 inputs (wavelet variance, skewness, kurtosis, entropy), binary output (class 1 = forged). No missing values. We dropped 24 exact duplicates (all class 0), leaving N = 1,348, of which 45.3% are forged.
+
+## Split
+Stratified 80/20 split, seed 5420: 1,078 development rows and 270 test rows (saved in data/split.csv). The test rows stay untouched until the end; every number below uses development data only. Tuning uses shuffled stratified 5-fold CV (seed 5420), with scaling fitted inside each training fold.
+
+## Baseline
+Standardised logistic regression, with C tuned over 13 log-spaced values from 10^-3 to 10^3. CV chose C = 100 (100 to 1000 tie, i.e. almost no regularisation). For reference, the majority-class predictor has 45.3% error.
+
+## Result
+5-fold CV error: 0.56% +/- 0.09% (mean +/- SE of the five fold errors, SE = SD/sqrt(5)). That is 6 of 1,078 out-of-fold rows wrong (Wilson 95% interval 0.26-1.21%). Because C was chosen on the same folds, we also ran nested CV: 0.74% +/- 0.32%, AUC 0.9999.
+
+Because the error is below 1%, we started learning curves (baseline.png, panel b). For each size we took 50 stratified draws, tuned each method by 5-fold CV within the draw, and scored it on the remaining development rows. Mean error, LR / kNN / RF:
+n = 20: 6.4 / 11.9 / 14.2%
+n = 50: 2.5 / 4.2 / 7.8%
+n = 200: 1.2 / 0.8 / 2.4%
+n = 800: 0.65 / 0.13 / 0.60%
+Logistic regression leads at 50 notes or fewer. kNN (k = 1) overtakes it from about 200 notes, while logistic regression levels off near 0.6%.
+
+## Issues found
+- UCI does not say which class is forged, and secondary sources disagree. Error and AUC are unaffected, but forged precision and recall would swap.
+- There are no specimen IDs, but class-1 rows repeat a pattern about every 8 rows in file order (lag-1 autocorrelation 0.62; class 0 looks shuffled). Keeping each run of 8 rows in one fold did not change the error (LR 0.65%, kNN 0.09% either way).
+- At about 0.5% error, the 270-row test set holds only 1-2 errors, so test-set gaps between methods will be ties.
+- The draws share evaluation rows, so their spread understates the uncertainty.
+
+## Next steps
+Before 16 November, Maanas will add more training sizes, plot paired error differences between methods with error bars, and write the paper outline. Advit will tune the forest further and add confusion matrices and ROC curves.
+
+## Code
+[REPOSITORY LINK]
