@@ -1,7 +1,7 @@
 # How Many Training Notes? Logistic Regression, kNN and Random Forests for Forged-Banknote Detection
 
 ## Group
-Final Project Groups, Group [NUMBER]: Maanas, Advit
+Final Project Groups: maanas-advit (Maanas, Advit)
 
 ## Changes since the proposal
 Logistic regression is already below 1% error, so, as the feedback suggested, our main question is now: how many training notes does each method need to reach a given error rate? Test accuracy becomes secondary. We also check for several images of one specimen (see Issues).
