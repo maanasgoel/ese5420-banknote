@@ -13,12 +13,12 @@ UCI Banknote Authentication (Lohweg 2012, CC BY 4.0): 1,372 rows, 4 inputs (wave
 Stratified 80/20 split, seed 5420: 1,078 development rows and 270 test rows (saved in data/split.csv). The test rows stay untouched until the end; every number below uses development data only. Tuning uses shuffled stratified 5-fold CV (seed 5420), with scaling fitted inside each training fold.
 
 ## Baseline
-Standardised logistic regression, with C tuned over 13 log-spaced values from 10^-3 to 10^3. CV chose C = 100 (100 to 1000 tie, i.e. almost no regularisation). For reference, the majority-class predictor has 45.3% error.
+Standardised logistic regression (Module 3), with C tuned over 13 log-spaced values from 10^-3 to 10^3. CV chose C = 100 (100 to 1000 tie, i.e. almost no regularisation). For reference, the majority-class predictor has 45.3% error.
 
 ## Result
 5-fold CV error: 0.56% +/- 0.09% (mean +/- SE of the five fold errors, SE = SD/sqrt(5)). That is 6 of 1,078 out-of-fold rows wrong (Wilson 95% interval 0.26-1.21%). Because C was chosen on the same folds, we also ran nested CV: 0.74% +/- 0.32%, AUC 0.9999.
 
-Because the error is below 1%, we started learning curves (baseline.png, panel b). For each size we took 50 stratified draws, tuned each method by 5-fold CV within the draw, and scored it on the remaining development rows. Mean error, LR / kNN / RF:
+Because the error is below 1%, we started learning curves (baseline.png, panel b). For each size we took 50 stratified draws, tuned each method by 5-fold CV within the draw, and scored it on the remaining development rows. The random forest (Module 7) is an early preview of the final-paper extension; no baseline number depends on it. Mean error, LR / kNN / RF:
 n = 20: 6.4 / 11.9 / 14.2%
 n = 50: 2.5 / 4.2 / 7.8%
 n = 200: 1.2 / 0.8 / 2.4%
