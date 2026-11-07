@@ -20,7 +20,7 @@ method needs to reach a given error rate**.
 | `src/make_figure.py` | `figures/baseline.png` (baseline checkpoint) |
 | `src/make_paper_figures.py` | `figures/{learning_curves,grouped,test_roc}.pdf` |
 | `src/make_tables.py` | LaTeX tables and `numbers.tex` (every number quoted in the text) -> `paper/tables/` |
-| `paper/` | NeurIPS-style LaTeX: `main.tex` (final paper), `early_draft.tex` (16 Nov checkpoint) |
+| `paper/` | NeurIPS LaTeX: `main.tex` (final paper, official `neurips_2026.sty`), `early_draft.tex` (16 Nov checkpoint, 2025 style as submitted) |
 | `submissions/` | Canvas uploads (`baseline.txt`, `baseline.png`, `early_draft.pdf`, `final_paper.pdf`) |
 
 ## Reproduce

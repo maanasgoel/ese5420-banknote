@@ -1,10 +1,10 @@
-\section{Discussion}
+\section{Discussion and limitations}
 \label{sec:discussion}
 \paragraph{Why the curves look the way they do.} We think the ranking follows the shape of decision boundary each method can represent. The evidence points to a smooth, curved boundary: no plane separates the development notes, but the 8-unit network separates all of them (0.00\% CV error on the full development set, Table~\ref{tab:test}). Logistic regression fits a plane with five parameters, so it is reliable from few notes but cannot get below its bias floor of about 0.6\%. $k$NN with $k=1$ can follow any boundary, but it needs enough notes to fill the space near it, so it starts badly and improves steadily. Trees split on one feature at a time, so they approximate a smooth oblique boundary with many small steps, and that needs many notes. The small neural network sits in between: with 8 hidden units (49 weights) it can represent a smooth curved boundary, yet it has far fewer degrees of freedom than $k$NN or a forest. On this dataset that appears to be the right inductive bias at every sample size we tried, although we did not test this explanation directly.
 
 \paragraph{What a practitioner should take away.} If only a few dozen labelled notes are available, logistic regression or a small neural network is the safe choice; $k$NN and tree ensembles should not be used below about 100 notes. With a few hundred notes, the gap between the methods is a fraction of a percentage point, and the choice can be made on other grounds, such as interpretability (logistic regression) or simplicity ($k$NN). The answer to ``which method is best?'' depends on $n$, which a single accuracy number hides.
 
-\paragraph{Limitations.}
+\subsection*{Limitations}
 \begin{itemize}
   \item \textbf{One dataset, four features.} The conclusions are about this benchmark. They are not a claim about real currency authentication, where the notes, scanners and forgery methods vary far more.
   \item \textbf{Specimen identity is unknown.} Our 8-row blocks are a heuristic inferred from file order. They may cut real specimens in two or join different ones, so the grouped check reduces the risk of leakage but cannot rule it out. The dev/test split itself was random, so test notes may share specimens with development notes.

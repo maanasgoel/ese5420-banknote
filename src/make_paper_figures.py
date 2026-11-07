@@ -34,7 +34,7 @@ def style(ax):
         ax.spines[s].set_visible(False)
     for s in ("left", "bottom"):
         ax.spines[s].set_color(INK2)
-    ax.tick_params(colors=INK2, labelsize=8)
+    ax.tick_params(colors=INK2, labelsize=7)
     ax.grid(True, which="major", color=GRID, linewidth=0.7)
     ax.set_axisbelow(True)
 
@@ -58,7 +58,7 @@ def line_kw(m):
 
 
 def learning_figure(s, p):
-    fig, (a, b) = plt.subplots(1, 2, figsize=(7.0, 2.9))
+    fig, (a, b) = plt.subplots(1, 2, figsize=(5.5, 2.55))
     sizes = sorted(s.n_train.unique())
     floor = 0.05  # %: a mean of exactly 0 cannot sit on a log axis
     for m in ORDER:
@@ -74,10 +74,10 @@ def learning_figure(s, p):
     a.set_yscale("log")
     log_n_axis(a, sizes)
     a.yaxis.set_major_formatter(pct)
-    a.set_xlabel("Training notes $n$ (log scale)", fontsize=8.5)
-    a.set_ylabel("Mean error, 50 draws (log)", fontsize=8.5)
-    a.set_title("(a) Learning curves", loc="left", fontsize=9)
-    a.legend(frameon=False, fontsize=7, loc="lower left", handlelength=2.6)
+    a.set_xlabel("Training notes $n$ (log scale)", fontsize=7.5)
+    a.set_ylabel("Mean error, 50 draws (log)", fontsize=7.5)
+    a.set_title("(a) Learning curves", loc="left", fontsize=8)
+    a.legend(frameon=False, fontsize=6.5, loc="lower left", handlelength=2.4, borderaxespad=0.2)
     style(a)
 
     b.axhline(0, color=INK2, lw=0.9)
@@ -90,43 +90,50 @@ def learning_figure(s, p):
     b.yaxis.set_minor_locator(NullLocator())
     b.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:+g}" if v else "0"))
     log_n_axis(b, sizes)
-    b.set_xlabel("Training notes $n$ (log scale)", fontsize=8.5)
-    b.set_ylabel("Error minus logistic reg. (pp)", fontsize=8.5)
-    b.set_title("(b) Paired difference from baseline, $\\pm$2 SE", loc="left", fontsize=9)
+    b.set_xlabel("Training notes $n$ (log scale)", fontsize=7.5)
+    b.set_ylabel("Error minus logistic reg. (pp)", fontsize=7.5)
+    b.set_title("(b) Paired gap to baseline, $\\pm$2 SE", loc="left", fontsize=8)
     b.text(0.98, 0.96, "above 0: worse than baseline", transform=b.transAxes, ha="right",
-           va="top", fontsize=7, color=INK2)
+           va="top", fontsize=6.5, color=INK2)
     b.text(0.98, 0.04, "below 0: better", transform=b.transAxes, ha="right", va="bottom",
-           fontsize=7, color=INK2)
+           fontsize=6.5, color=INK2)
     style(b)
     for ax in (a, b):
-        ax.tick_params(axis="x", labelsize=7)
-    fig.tight_layout(w_pad=1.5)
+        ax.tick_params(labelsize=6.5)
+    fig.tight_layout(w_pad=1.0, pad=0.3)
     return fig
 
 
 def grouped_figure(s, sg):
-    fig, ax = plt.subplots(figsize=(3.4, 2.5))
+    fig, ax = plt.subplots(figsize=(2.42, 2.15))
     for m in CORE:
         g = s[(s.method == m) & s.n_train.isin(sg.n_train.unique())].sort_values("n_train")
         h = sg[sg.method == m].sort_values("n_train")
         ax.plot(g.n_train, 100 * g["mean"], color=COLORS[m], lw=1.8, marker=MARKERS[m], ms=4.5,
-                mec="white", mew=0.8, label=f"{SHORT[m]}, random draws")
+                mec="white", mew=0.8)
         ax.errorbar(h.n_train, 100 * h["mean"], yerr=200 * h.se, color=COLORS[m], lw=1.3,
                     ls=(0, (4, 2)), marker=MARKERS[m], ms=4.5, mfc="white", mew=1.0,
-                    capsize=1.8, label=f"{SHORT[m]}, grouped draws")
+                    capsize=1.8)
     ax.set_yscale("log")
     log_n_axis(ax, sorted(sg.n_train.unique()))
     ax.yaxis.set_major_formatter(pct)
-    ax.set_xlabel("Training notes $n$ (log scale)", fontsize=8.5)
-    ax.set_ylabel("Mean error (log)", fontsize=8.5)
-    ax.legend(frameon=False, fontsize=6.5, loc="lower left")
+    ax.set_xlabel("Training notes $n$ (log scale)", fontsize=7.5)
+    ax.set_ylabel("Mean error (log)", fontsize=7.5)
+    ax.text(330, 1.5, "Logistic reg.", color=INK, fontsize=6.5, ha="center", va="bottom")
+    ax.text(700, 0.1, "kNN", color=INK, fontsize=6.5, ha="right", va="center")
+    ax.plot([], [], color=INK2, lw=1.4, label="random draws")
+    ax.plot([], [], color=INK2, lw=1.2, ls=(0, (4, 2)), marker="o", mfc="white", ms=4,
+            label="grouped draws")
+    ax.legend(frameon=False, fontsize=6, loc="upper right", handlelength=2.2,
+              borderaxespad=0.1)
     style(ax)
-    fig.tight_layout()
+    ax.tick_params(labelsize=6.5)
+    fig.tight_layout(pad=0.3)
     return fig
 
 
 def roc_figure(roc, te):
-    fig, ax = plt.subplots(figsize=(3.4, 2.6))
+    fig, ax = plt.subplots(figsize=(3.0, 2.35))
     for m in ORDER:
         g = roc[roc.method == m]
         auc = te["methods"][m]["auc"]
@@ -135,9 +142,9 @@ def roc_figure(roc, te):
                 ls="-" if m in CORE else (0, (4, 2)))
     ax.set_xlim(-0.5, 10); ax.set_ylim(85, 100.5)
     ax.xaxis.set_major_formatter(pct); ax.yaxis.set_major_formatter(pct)
-    ax.set_xlabel("False-alarm rate (zoomed to 0-10%)", fontsize=8.5)
-    ax.set_ylabel("Forgeries caught", fontsize=8.5)
-    ax.legend(frameon=False, fontsize=6.5, loc="lower right")
+    ax.set_xlabel("False-alarm rate (zoomed to 0-10%)", fontsize=7.5)
+    ax.set_ylabel("Forgeries caught", fontsize=7.5)
+    ax.legend(frameon=False, fontsize=6, loc="lower right")
     style(ax)
     fig.tight_layout()
     return fig
